@@ -1,5 +1,11 @@
+import CommentsList from './components/CommentsList';
+
 function App() {
-	return <div>Lol</div>;
+	return (
+		<>
+			<CommentsList />
+		</>
+	);
 }
 
 export default App;
