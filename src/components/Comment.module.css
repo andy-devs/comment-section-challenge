@@ -1,0 +1,50 @@
+.comment {
+	display: flex;
+	align-items: center;
+	background: var(--white);
+	padding: 1.2rem 1.5rem;
+	border-radius: 0.7rem;
+	max-width: 40rem;
+	gap: 1.7rem;
+}
+.comment__score {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	background: var(--very-light-gray);
+	border-radius: 0.4rem;
+}
+.comment__score-controls {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.7rem 0.8rem;
+	width: 17px;
+	height: 15px;
+	cursor: pointer;
+}
+.comment__score-result {
+	color: var(--moderate-blue);
+	font-weight: 500;
+	cursor: default;
+}
+.comment__content-user {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.8rem;
+}
+.comment__content-user__image {
+	max-width: 2rem;
+}
+.comment__content-user__name {
+	font-weight: 500;
+}
+.comment__content-user__date {
+	color: var(--grayish-blue);
+}
+.comment__content-text__message {
+	line-height: 1.5;
+	color: var(--grayish-blue);
+}

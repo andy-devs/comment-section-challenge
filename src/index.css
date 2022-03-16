@@ -12,7 +12,7 @@
 body {
 	margin: 0;
 	padding: 2rem;
-	background: var(--light-gray);
+	background: var(--very-light-gray);
 	font-family: 'Rubik', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

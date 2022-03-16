@@ -8,7 +8,7 @@ const CommentsList = () => {
 	useEffect(() => {
 		const fetchComments = async () => {
 			try {
-				const response = await fetch('../data.json');
+				const response = await fetch('data.json');
 				const data = await response.json();
 				const fetchedComments = await data.comments;
 				setComments(fetchedComments);
@@ -33,6 +33,7 @@ const CommentsList = () => {
 							createdAt={comment.createdAt}
 							score={comment.score}
 							user={comment.user}
+							content={comment.content}
 							replies={comment.replies}
 						/>
 					);
