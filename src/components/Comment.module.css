@@ -1,6 +1,6 @@
 .comment {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	background: var(--white);
 	padding: 1.2rem 1.5rem;
 	border-radius: 0.7rem;
@@ -13,8 +13,9 @@
 	align-items: center;
 	justify-content: space-around;
 	background: var(--very-light-gray);
-	border-radius: 0.4rem;
+	border-radius: 0.7rem;
 }
+
 .comment__score-controls {
 	display: flex;
 	align-items: center;
@@ -23,6 +24,10 @@
 	width: 17px;
 	height: 15px;
 	cursor: pointer;
+}
+
+.comment__score-controls:hover > img {
+	filter: hue-rotate(330deg) invert(0.1) brightness(50%);
 }
 .comment__score-result {
 	color: var(--moderate-blue);
