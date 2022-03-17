@@ -30,6 +30,14 @@ const Comment = (props) => {
 				</div>
 				<div className={styles['comment__content-text']}>
 					<p className={styles['comment__content-text__message']}>
+						{props.replyingTo && (
+							<>
+								<span className={styles['comment__content-text__reply']}>
+									@{props.replyingTo}
+								</span>
+								<span> </span>
+							</>
+						)}
 						{props.content}
 					</p>
 				</div>

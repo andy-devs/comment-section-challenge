@@ -1,6 +1,7 @@
 import Comment from './Comment';
 import styles from './CommentsList.module.css';
 import { useEffect, useState } from 'react';
+import RepliesList from './RepliesList';
 
 const CommentsList = () => {
 	const [comments, setComments] = useState([]);
@@ -27,19 +28,22 @@ const CommentsList = () => {
 			) : (
 				comments.map((comment) => {
 					return (
-						<Comment
-							key={comment.id}
-							id={comment.id}
-							createdAt={comment.createdAt}
-							score={comment.score}
-							user={comment.user}
-							content={comment.content}
-							replies={comment.replies}
-						/>
+						<>
+							<Comment
+								key={comment.id}
+								id={comment.id}
+								createdAt={comment.createdAt}
+								score={comment.score}
+								user={comment.user}
+								content={comment.content}
+							/>
+							<RepliesList replies={comment.replies} />
+						</>
 					);
 				})
 			)}
 		</div>
+		// {replies && <CommentsList replies={comment.replies} />}
 	);
 };
 

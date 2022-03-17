@@ -4,7 +4,6 @@
 	background: var(--white);
 	padding: 1.2rem 1.5rem;
 	border-radius: 0.7rem;
-	max-width: 40rem;
 	gap: 1.7rem;
 }
 .comment__score {
@@ -52,4 +51,8 @@
 .comment__content-text__message {
 	line-height: 1.5;
 	color: var(--grayish-blue);
+}
+.comment__content-text__reply {
+	color: var(--moderate-blue);
+	font-weight: 500;
 }
