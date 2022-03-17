@@ -1,4 +1,4 @@
-import CommentsList from './components/CommentsList';
+import CommentsList from './components/Comments/CommentsList';
 
 function App() {
 	return (

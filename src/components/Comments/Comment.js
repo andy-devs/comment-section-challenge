@@ -1,16 +1,53 @@
 import styles from './Comment.module.css';
-import IconPlus from '../assets/icon-plus.svg';
-import IconMinus from '../assets/icon-minus.svg';
+import IconPlus from '../../assets/icon-plus.svg';
+import IconMinus from '../../assets/icon-minus.svg';
+import { useState } from 'react';
 
 const Comment = (props) => {
+	const [score, setScore] = useState(props.score);
+	const [upScore, setUpScore] = useState(false);
+	const [downScore, setDownScore] = useState(false);
+
+	const upScoreHandler = () => {
+		if (downScore) {
+			setScore((prev) => ++prev);
+			setDownScore(false);
+		}
+		if (!upScore) {
+			setScore((prev) => ++prev);
+			setUpScore(true);
+		} else {
+			setScore((prev) => --prev);
+			setUpScore(false);
+		}
+	};
+
+	const downScoreHandler = () => {
+		if (upScore) {
+			setScore((prev) => --prev);
+			setUpScore(false);
+		}
+		if (!downScore) {
+			setScore((prev) => --prev);
+			setDownScore(true);
+		} else {
+			setScore((prev) => ++prev);
+			setDownScore(false);
+		}
+	};
+
 	return (
 		<div className={styles.comment}>
 			<div className={styles['comment__score']}>
-				<div className={styles['comment__score-controls']}>
+				<div
+					className={styles['comment__score-controls']}
+					onClick={upScoreHandler}>
 					<img src={IconPlus} alt='plus sign' />
 				</div>
-				<span className={styles['comment__score-result']}>{props.score}</span>
-				<div className={styles['comment__score-controls']}>
+				<span className={styles['comment__score-result']}>{score}</span>
+				<div
+					className={styles['comment__score-controls']}
+					onClick={downScoreHandler}>
 					<img src={IconMinus} alt='minus sign' />
 				</div>
 			</div>

@@ -5,6 +5,7 @@
 	padding: 1.2rem 1.5rem;
 	border-radius: 0.7rem;
 	gap: 1.7rem;
+	margin-bottom: 1.2rem;
 }
 .comment__score {
 	display: flex;
