@@ -40,13 +40,25 @@ const Comment = (props) => {
 		<div className={styles.comment}>
 			<div className={styles['comment__score']}>
 				<div
-					className={styles['comment__score-controls']}
+					className={
+						upScore
+							? styles['comment__score-controls'] +
+							  ' ' +
+							  styles['comment__score-controls--active']
+							: styles['comment__score-controls']
+					}
 					onClick={upScoreHandler}>
 					<img src={IconPlus} alt='plus sign' />
 				</div>
 				<span className={styles['comment__score-result']}>{score}</span>
 				<div
-					className={styles['comment__score-controls']}
+					className={
+						downScore
+							? styles['comment__score-controls'] +
+							  ' ' +
+							  styles['comment__score-controls--active']
+							: styles['comment__score-controls']
+					}
 					onClick={downScoreHandler}>
 					<img src={IconMinus} alt='minus sign' />
 				</div>
@@ -61,6 +73,11 @@ const Comment = (props) => {
 					<span className={styles['comment__content-user__name']}>
 						{props.user.username}
 					</span>
+					{props.currentUser.username === props.user.username && (
+						<span className={styles['comment__content-user__is-current']}>
+							you
+						</span>
+					)}
 					<span className={styles['comment__content-user__date']}>
 						{props.createdAt}
 					</span>

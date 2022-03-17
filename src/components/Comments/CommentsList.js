@@ -1,26 +1,8 @@
 import Comment from './Comment';
 import styles from './CommentsList.module.css';
-import { useEffect, useState } from 'react';
 import RepliesList from './RepliesList';
 
-const CommentsList = () => {
-	const [comments, setComments] = useState([]);
-
-	useEffect(() => {
-		const fetchComments = async () => {
-			try {
-				const response = await fetch('data.json');
-				const data = await response.json();
-				const fetchedComments = await data.comments;
-				setComments(fetchedComments);
-			} catch (err) {
-				console.log(err);
-			}
-		};
-
-		fetchComments();
-	}, []);
-
+const CommentsList = ({ comments, currentUser }) => {
 	return (
 		<div className={styles.comments}>
 			{comments.length === 0 ? (
@@ -36,14 +18,17 @@ const CommentsList = () => {
 								score={comment.score}
 								user={comment.user}
 								content={comment.content}
+								currentUser={currentUser}
 							/>
-							<RepliesList replies={comment.replies} />
+							<RepliesList
+								replies={comment.replies}
+								currentUser={currentUser}
+							/>
 						</>
 					);
 				})
 			)}
 		</div>
-		// {replies && <CommentsList replies={comment.replies} />}
 	);
 };
 

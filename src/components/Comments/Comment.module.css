@@ -5,7 +5,7 @@
 	padding: 1.2rem 1.5rem;
 	border-radius: 0.7rem;
 	gap: 1.7rem;
-	margin-bottom: 1.2rem;
+	margin-bottom: 1.5rem;
 }
 .comment__score {
 	display: flex;
@@ -25,6 +25,9 @@
 	height: 15px;
 	cursor: pointer;
 }
+.comment__score-controls--active > img {
+	filter: hue-rotate(330deg) invert(0.1) brightness(50%);
+}
 
 .comment__score-controls:hover > img {
 	filter: hue-rotate(330deg) invert(0.1) brightness(50%);
@@ -37,7 +40,7 @@
 .comment__content-user {
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	gap: 0.7rem;
 	margin-bottom: 0.8rem;
 }
 .comment__content-user__image {
@@ -45,6 +48,12 @@
 }
 .comment__content-user__name {
 	font-weight: 500;
+}
+.comment__content-user__is-current {
+	color: var(--white);
+	background: var(--moderate-blue);
+	padding: 0.1rem 0.2rem;
+	border-radius: 0.1rem;
 }
 .comment__content-user__date {
 	color: var(--grayish-blue);
