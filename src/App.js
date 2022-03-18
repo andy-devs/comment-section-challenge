@@ -23,12 +23,12 @@ function App() {
 		fetchData();
 	}, []);
 
-	const addNewComment = (text) => {
+	const addNewComment = (text, date) => {
 		const newComment = {
 			user: { image: currentUser.image, username: currentUser.username },
 			content: text,
 			score: 0,
-			createdAt: '1 minute ago',
+			createdAt: date,
 			replies: [],
 		};
 		setComments((prev) => {

@@ -1,6 +1,10 @@
 .comments {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: stretch;
 	justify-content: flex-start;
+	margin-bottom: 1.5rem;
+}
+.comments div:last-child {
+	margin-bottom: 0;
 }

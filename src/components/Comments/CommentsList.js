@@ -20,10 +20,12 @@ const CommentsList = ({ comments, currentUser }) => {
 								content={comment.content}
 								currentUser={currentUser}
 							/>
-							<RepliesList
-								replies={comment.replies}
-								currentUser={currentUser}
-							/>
+							{comment.replies.length > 0 && (
+								<RepliesList
+									replies={comment.replies}
+									currentUser={currentUser}
+								/>
+							)}
 						</>
 					);
 				})

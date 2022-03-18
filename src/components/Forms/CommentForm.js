@@ -1,13 +1,21 @@
 import styles from './CommentForm.module.css';
 import Button from '../UI/Button';
 import { useState } from 'react';
+import moment from 'moment';
 
 const CommentForm = (props) => {
 	const [inputValue, setInputValue] = useState('');
 
+	const calculateDate = () => {
+		const date = moment().fromNow();
+		return date;
+	};
+
 	const submitHandler = (event) => {
 		event.preventDefault();
-		props.addNewComment(inputValue);
+		const date = calculateDate();
+
+		props.addNewComment(inputValue, date);
 
 		setInputValue('');
 	};
