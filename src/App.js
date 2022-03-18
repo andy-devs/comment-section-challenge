@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CommentsList from './components/Comments/CommentsList';
+import CommentForm from './components/Forms/CommentForm';
 
 function App() {
 	const [comments, setComments] = useState([]);
@@ -22,10 +23,24 @@ function App() {
 		fetchData();
 	}, []);
 
+	const addNewComment = (text) => {
+		const newComment = {
+			user: { image: currentUser.image, username: currentUser.username },
+			content: text,
+			score: 0,
+			createdAt: '1 minute ago',
+			replies: [],
+		};
+		setComments((prev) => {
+			return [...comments, newComment];
+		});
+	};
+
 	return (
-		<>
+		<div className='main'>
 			<CommentsList comments={comments} currentUser={currentUser} />
-		</>
+			<CommentForm currentUser={currentUser} addNewComment={addNewComment} />
+		</div>
 	);
 }
 

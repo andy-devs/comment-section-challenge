@@ -11,7 +11,6 @@
 }
 body {
 	margin: 0;
-	padding: 2rem;
 	background: var(--very-light-gray);
 	font-family: 'Rubik', sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -20,4 +19,9 @@ body {
 * {
 	margin: 0;
 	padding: 0;
+}
+.main {
+	max-width: 45rem;
+	margin: 0 auto;
+	padding: 2rem;
 }

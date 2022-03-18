@@ -1,0 +1,13 @@
+.button {
+	background: var(--moderate-blue);
+	color: var(--white);
+	padding: 0.7rem 1.3rem;
+	border-radius: 0.4rem;
+	letter-spacing: 0.08rem;
+	border: none;
+	cursor: pointer;
+	transition: opacity 0.2s linear;
+}
+.button:hover {
+	opacity: 0.7;
+}
