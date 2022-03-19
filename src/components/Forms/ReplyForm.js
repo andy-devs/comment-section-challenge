@@ -15,7 +15,7 @@ const ReplyForm = (props) => {
 		event.preventDefault();
 		const date = calculateDate();
 
-		props.addNewReply(inputValue, date, props.user, props.id);
+		props.addNewReply(inputValue, date, props.user, props.id, props.commentId);
 
 		setInputValue('');
 	};

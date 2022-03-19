@@ -36,7 +36,7 @@ function App() {
 		});
 	};
 
-	const addNewReply = (text, date, user, id) => {
+	const addNewReply = (text, date, user, id, commentId) => {
 		const newReply = {
 			user: { image: currentUser.image, username: currentUser.username },
 			content: text,
@@ -44,12 +44,29 @@ function App() {
 			createdAt: date,
 			replyingTo: user.username,
 		};
-		const commentWithReplyId = comments.findIndex(
-			(comment) => comment.id === id
-		);
-		const commentsCopy = [...comments];
-		commentsCopy[commentWithReplyId].replies.push(newReply);
-		setComments(commentsCopy);
+		if (!commentId) {
+			const commentWithReplyId = comments.findIndex(
+				(comment) => comment.id === id
+			);
+			const commentsCopy = [...comments];
+			commentsCopy[commentWithReplyId].replies.push(newReply);
+			setComments(commentsCopy);
+		} else if (commentId) {
+			const commentWithReplyId = comments.findIndex(
+				(comment) => comment.id === commentId
+			);
+			const commentsCopy = [...comments];
+			const commentAllReplies = commentsCopy[commentWithReplyId].replies;
+			const replyingToIndex = commentAllReplies.findIndex(
+				(reply) => reply.id === id
+			);
+			commentsCopy[commentWithReplyId].replies.splice(
+				replyingToIndex + 1,
+				0,
+				newReply
+			);
+			setComments(commentsCopy);
+		}
 	};
 
 	return (

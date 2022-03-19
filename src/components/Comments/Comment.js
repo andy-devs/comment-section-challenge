@@ -150,6 +150,7 @@ const Comment = (props) => {
 					id={props.id}
 					currentUser={props.currentUser}
 					addNewReply={props.addNewReply}
+					commentId={props.commentId}
 				/>
 			)}
 		</>

@@ -23,8 +23,10 @@ const CommentsList = ({ comments, currentUser, addNewReply }) => {
 							/>
 							{comment.replies.length > 0 && (
 								<RepliesList
+									commentId={comment.id}
 									replies={comment.replies}
 									currentUser={currentUser}
+									addNewReply={addNewReply}
 								/>
 							)}
 						</>
