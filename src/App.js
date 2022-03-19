@@ -36,9 +36,29 @@ function App() {
 		});
 	};
 
+	const addNewReply = (text, date, user, id) => {
+		const newReply = {
+			user: { image: currentUser.image, username: currentUser.username },
+			content: text,
+			score: 0,
+			createdAt: date,
+			replyingTo: user.username,
+		};
+		const commentWithReplyId = comments.findIndex(
+			(comment) => comment.id === id
+		);
+		const commentsCopy = [...comments];
+		commentsCopy[commentWithReplyId].replies.push(newReply);
+		setComments(commentsCopy);
+	};
+
 	return (
 		<div className='main'>
-			<CommentsList comments={comments} currentUser={currentUser} />
+			<CommentsList
+				comments={comments}
+				currentUser={currentUser}
+				addNewReply={addNewReply}
+			/>
 			<CommentForm currentUser={currentUser} addNewComment={addNewComment} />
 		</div>
 	);

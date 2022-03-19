@@ -13,6 +13,7 @@ const RepliesList = ({ replies, currentUser }) => {
 					user={reply.user}
 					content={reply.content}
 					replyingTo={reply.replyingTo}
+					replies={[]}
 					currentUser={currentUser}
 				/>
 			))}

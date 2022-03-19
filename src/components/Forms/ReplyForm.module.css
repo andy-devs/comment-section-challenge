@@ -1,0 +1,34 @@
+.reply-form {
+	display: flex;
+	align-items: flex-start;
+	background: var(--white);
+	padding: 1.2rem 1.5rem;
+	border-radius: 0.7rem;
+	gap: 1.4rem;
+	margin-bottom: 1.5rem;
+}
+.reply-form__avatar {
+	max-width: 2.5rem;
+}
+.reply-form__form {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+	width: 100%;
+}
+.reply-form__form-input {
+	border: 2px solid var(--very-light-gray);
+	color: var(--dark-blue);
+	font-family: 'Rubik', sans-serif;
+	padding: 0.5rem 1rem;
+	height: 4rem;
+	border-radius: 0.4rem;
+	width: 100%;
+	resize: none;
+}
+.reply-form__form-input:focus {
+	outline: 1px solid var(--moderate-blue);
+}
+.reply-form__form-input::placeholder {
+	color: var(--grayish-blue);
+}
