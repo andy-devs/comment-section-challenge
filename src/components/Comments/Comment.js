@@ -1,6 +1,9 @@
 import styles from './Comment.module.css';
 import IconPlus from '../../assets/icon-plus.svg';
 import IconMinus from '../../assets/icon-minus.svg';
+import IconReply from '../../assets/icon-reply.svg';
+import IconEdit from '../../assets/icon-edit.svg';
+import IconDelete from '../../assets/icon-delete.svg';
 import { useState } from 'react';
 
 const Comment = (props) => {
@@ -64,23 +67,59 @@ const Comment = (props) => {
 				</div>
 			</div>
 			<div className={styles['comment__content']}>
-				<div className={styles['comment__content-user']}>
-					<img
-						className={styles['comment__content-user__image']}
-						src={props.user.image.png}
-						alt='user'
-					/>
-					<span className={styles['comment__content-user__name']}>
-						{props.user.username}
-					</span>
-					{props.currentUser.username === props.user.username && (
-						<span className={styles['comment__content-user__is-current']}>
-							you
+				<div className={styles['comment__header']}>
+					<div className={styles['comment__content-user']}>
+						<img
+							className={styles['comment__content-user__image']}
+							src={props.user.image.png}
+							alt='user'
+						/>
+						<span className={styles['comment__content-user__name']}>
+							{props.user.username}
 						</span>
-					)}
-					<span className={styles['comment__content-user__date']}>
-						{props.createdAt}
-					</span>
+						{props.currentUser.username === props.user.username && (
+							<span className={styles['comment__content-user__is-current']}>
+								you
+							</span>
+						)}
+						<span className={styles['comment__content-user__date']}>
+							{props.createdAt}
+						</span>
+					</div>
+					<div className={styles['comment__content-interactions']}>
+						{props.currentUser.username !== props.user.username ? (
+							<button
+								className={
+									styles['comment__content-interactions__item'] +
+									' ' +
+									styles['interactions__reply']
+								}>
+								<img src={IconReply} alt='reply icon' />
+								Reply
+							</button>
+						) : (
+							<>
+								<button
+									className={
+										styles['comment__content-interactions__item'] +
+										' ' +
+										styles['interactions__delete']
+									}>
+									<img src={IconDelete} alt='delete icon' />
+									Delete
+								</button>
+								<button
+									className={
+										styles['comment__content-interactions__item'] +
+										' ' +
+										styles['interactions__edit']
+									}>
+									<img src={IconEdit} alt='edit icon' />
+									Edit
+								</button>
+							</>
+						)}
+					</div>
 				</div>
 				<div className={styles['comment__content-text']}>
 					<p className={styles['comment__content-text__message']}>

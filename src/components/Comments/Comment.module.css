@@ -37,11 +37,13 @@
 	font-weight: 500;
 	cursor: default;
 }
+.comment__content {
+	width: 100%;
+}
 .comment__content-user {
 	display: flex;
 	align-items: center;
 	gap: 0.7rem;
-	margin-bottom: 0.8rem;
 }
 .comment__content-user__image {
 	max-width: 2rem;
@@ -65,4 +67,33 @@
 .comment__content-text__reply {
 	color: var(--moderate-blue);
 	font-weight: 500;
+}
+.comment__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.8rem;
+}
+.comment__content-interactions {
+	display: flex;
+	gap: 1.5rem;
+	align-items: center;
+}
+.comment__content-interactions__item {
+	background: transparent;
+	border: none;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-weight: 700;
+	font-size: 1.02rem;
+	color: var(--moderate-blue);
+	cursor: pointer;
+	transition: opacity 0.2s linear;
+}
+.comment__content-interactions__item:hover {
+	opacity: 0.6;
+}
+.interactions__delete {
+	color: var(--soft-red);
 }
