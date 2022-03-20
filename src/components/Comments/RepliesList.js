@@ -7,6 +7,7 @@ const RepliesList = ({
 	addNewReply,
 	commentId,
 	deleteHandler,
+	editHandler,
 }) => {
 	return (
 		<div className={styles.replies}>
@@ -22,6 +23,7 @@ const RepliesList = ({
 					currentUser={currentUser}
 					addNewReply={addNewReply}
 					deleteHandler={deleteHandler}
+					editHandler={editHandler}
 					commentId={commentId}
 				/>
 			))}

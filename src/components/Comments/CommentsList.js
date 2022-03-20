@@ -7,6 +7,7 @@ const CommentsList = ({
 	currentUser,
 	addNewReply,
 	deleteHandler,
+	editHandler,
 }) => {
 	return (
 		<div className={styles.comments}>
@@ -26,6 +27,7 @@ const CommentsList = ({
 								currentUser={currentUser}
 								addNewReply={addNewReply}
 								deleteHandler={deleteHandler}
+								editHandler={editHandler}
 							/>
 							{comment.replies.length > 0 && (
 								<RepliesList
@@ -34,6 +36,7 @@ const CommentsList = ({
 									currentUser={currentUser}
 									addNewReply={addNewReply}
 									deleteHandler={deleteHandler}
+									editHandler={editHandler}
 								/>
 							)}
 						</>

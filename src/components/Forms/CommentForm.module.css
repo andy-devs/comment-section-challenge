@@ -24,6 +24,8 @@
 	border-radius: 0.4rem;
 	width: 100%;
 	resize: none;
+	font-size: 1rem;
+	line-height: 1.5;
 }
 .comment-form__form-input:focus {
 	outline: 1px solid var(--moderate-blue);

@@ -90,6 +90,31 @@ function App() {
 		}
 	};
 
+	const editHandler = (text, date, id, commentId) => {
+		if (!commentId) {
+			const updatedCommentIndex = comments.findIndex(
+				(comment) => comment.id === id
+			);
+			const commentsCopy = [...comments];
+			console.log(commentsCopy[updatedCommentIndex]);
+			commentsCopy[updatedCommentIndex].content = text;
+			commentsCopy[updatedCommentIndex].date = date;
+			setComments(commentsCopy);
+		} else if (commentId) {
+			const commentsCopy = [...comments];
+			const commentWithReplyIndex = commentsCopy.findIndex(
+				(comment) => comment.id === commentId
+			);
+			const updatedReply = commentsCopy[
+				commentWithReplyIndex
+			].replies.findIndex((reply) => reply.id === id);
+			console.log(commentsCopy[commentWithReplyIndex].replies[updatedReply]);
+			commentsCopy[commentWithReplyIndex].replies[updatedReply].content = text;
+			commentsCopy[commentWithReplyIndex].replies[updatedReply].date = date;
+			setComments(commentsCopy);
+		}
+	};
+
 	return (
 		<div className='main'>
 			<CommentsList
@@ -97,6 +122,7 @@ function App() {
 				currentUser={currentUser}
 				addNewReply={addNewReply}
 				deleteHandler={deleteHandler}
+				editHandler={editHandler}
 			/>
 			<CommentForm currentUser={currentUser} addNewComment={addNewComment} />
 		</div>

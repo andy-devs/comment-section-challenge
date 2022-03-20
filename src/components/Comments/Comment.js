@@ -5,13 +5,15 @@ import IconReply from '../../assets/icon-reply.svg';
 import IconEdit from '../../assets/icon-edit.svg';
 import IconDelete from '../../assets/icon-delete.svg';
 import ReplyForm from '../Forms/ReplyForm';
+import EditForm from '../Forms/EditForm';
 import { useState } from 'react';
 
 const Comment = (props) => {
 	const [score, setScore] = useState(props.score);
 	const [upScore, setUpScore] = useState(false);
 	const [downScore, setDownScore] = useState(false);
-	const [isReplyVisible, setisReplyVisible] = useState(false);
+	const [isReplyVisible, setIsReplyVisible] = useState(false);
+	const [isEditVisible, setIsEditVisible] = useState(false);
 
 	const upScoreHandler = () => {
 		if (downScore) {
@@ -42,7 +44,11 @@ const Comment = (props) => {
 	};
 
 	const toggleReplyHandler = () => {
-		setisReplyVisible((prev) => !prev);
+		setIsReplyVisible((prev) => !prev);
+	};
+
+	const toggleEdit = () => {
+		setIsEditVisible((prev) => !prev);
 	};
 
 	const deleteComment = () => {
@@ -111,7 +117,8 @@ const Comment = (props) => {
 										styles['comment__content-interactions__item'] +
 										' ' +
 										styles['interactions__edit']
-									}>
+									}
+									onClick={toggleEdit}>
 									<img src={IconEdit} alt='edit icon' />
 									Edit
 								</button>
@@ -168,7 +175,8 @@ const Comment = (props) => {
 											styles['comment__content-interactions__item'] +
 											' ' +
 											styles['interactions__edit']
-										}>
+										}
+										onClick={toggleEdit}>
 										<img src={IconEdit} alt='edit icon' />
 										Edit
 									</button>
@@ -176,19 +184,29 @@ const Comment = (props) => {
 							)}
 						</div>
 					</div>
-					<div className={styles['comment__content-text']}>
-						<p className={styles['comment__content-text__message']}>
-							{props.replyingTo && (
-								<>
-									<span className={styles['comment__content-text__reply']}>
-										@{props.replyingTo}
-									</span>
-									<span> </span>
-								</>
-							)}
-							{props.content}
-						</p>
-					</div>
+					{!isEditVisible ? (
+						<div className={styles['comment__content-text']}>
+							<p className={styles['comment__content-text__message']}>
+								{props.replyingTo && (
+									<>
+										<span className={styles['comment__content-text__reply']}>
+											@{props.replyingTo}
+										</span>
+										<span> </span>
+									</>
+								)}
+								{props.content}
+							</p>
+						</div>
+					) : (
+						<EditForm
+							placeholder={props.content}
+							editHandler={props.editHandler}
+							id={props.id}
+							commentId={props.commentId}
+							toggleEdit={toggleEdit}
+						/>
+					)}
 				</div>
 			</div>
 			{isReplyVisible && (
