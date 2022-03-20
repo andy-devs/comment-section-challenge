@@ -9,3 +9,9 @@
 div:last-child {
 	margin-bottom: 0rem;
 }
+@media (max-width: 767px) {
+	.replies {
+		padding-left: 1rem;
+		margin-left: 0.8rem;
+	}
+}

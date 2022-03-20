@@ -31,3 +31,19 @@
 .comment-form__form-input::placeholder {
 	color: var(--grayish-blue);
 }
+@media (max-width: 767px) {
+	.comment-form__avatar {
+		display: none;
+	}
+	.comment-form__form {
+		flex-direction: column;
+		align-items: flex-end;
+	}
+	.comment-form__form-input {
+		align-self: stretch;
+		width: unset;
+	}
+	.comment-form__form-button {
+		align-self: flex-end;
+	}
+}

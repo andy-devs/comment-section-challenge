@@ -32,3 +32,20 @@
 .reply-form__form-input::placeholder {
 	color: var(--grayish-blue);
 }
+
+@media (max-width: 767px) {
+	.reply-form__avatar {
+		display: none;
+	}
+	.reply-form__form {
+		flex-direction: column;
+		align-items: flex-end;
+	}
+	.reply-form__form-input {
+		align-self: stretch;
+		width: unset;
+	}
+	.reply-form__form-button {
+		align-self: flex-end;
+	}
+}

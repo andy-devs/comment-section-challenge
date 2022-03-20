@@ -19,6 +19,12 @@ const ReplyForm = (props) => {
 
 		setInputValue('');
 	};
+	const enterPressed = (e) => {
+		if (e.keyCode === 13 && e.shiftKey === false) {
+			e.preventDefault();
+			submitHandler(e);
+		}
+	};
 
 	return (
 		<div className={styles['reply-form']}>
@@ -35,6 +41,7 @@ const ReplyForm = (props) => {
 					onChange={(e) => setInputValue(e.target.value)}
 					className={styles['reply-form__form-input']}
 					placeholder='Add a reply...'
+					onKeyDown={enterPressed}
 				/>
 				<Button>REPLY</Button>
 			</form>

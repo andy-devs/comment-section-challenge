@@ -56,29 +56,67 @@ const Comment = (props) => {
 	return (
 		<>
 			<div className={styles.comment}>
-				<div className={styles['comment__score']}>
-					<div
-						className={
-							upScore
-								? styles['comment__score-controls'] +
-								  ' ' +
-								  styles['comment__score-controls--active']
-								: styles['comment__score-controls']
-						}
-						onClick={upScoreHandler}>
-						<img src={IconPlus} alt='plus sign' />
+				<div className={styles['comment__score-mobile']}>
+					<div className={styles['comment__score']}>
+						<div
+							className={
+								upScore
+									? styles['comment__score-controls'] +
+									  ' ' +
+									  styles['comment__score-controls--active']
+									: styles['comment__score-controls']
+							}
+							onClick={upScoreHandler}>
+							<img src={IconPlus} alt='plus sign' />
+						</div>
+						<span className={styles['comment__score-result']}>{score}</span>
+						<div
+							className={
+								downScore
+									? styles['comment__score-controls'] +
+									  ' ' +
+									  styles['comment__score-controls--active']
+									: styles['comment__score-controls']
+							}
+							onClick={downScoreHandler}>
+							<img src={IconMinus} alt='minus sign' />
+						</div>
 					</div>
-					<span className={styles['comment__score-result']}>{score}</span>
-					<div
-						className={
-							downScore
-								? styles['comment__score-controls'] +
-								  ' ' +
-								  styles['comment__score-controls--active']
-								: styles['comment__score-controls']
-						}
-						onClick={downScoreHandler}>
-						<img src={IconMinus} alt='minus sign' />
+					<div className={styles['comment__content-interactions-mobile']}>
+						{props.currentUser.username !== props.user.username ? (
+							<button
+								className={
+									styles['comment__content-interactions__item'] +
+									' ' +
+									styles['interactions__reply']
+								}
+								onClick={toggleReplyHandler}>
+								<img src={IconReply} alt='reply icon' />
+								Reply
+							</button>
+						) : (
+							<>
+								<button
+									className={
+										styles['comment__content-interactions__item'] +
+										' ' +
+										styles['interactions__delete']
+									}
+									onClick={deleteComment}>
+									<img src={IconDelete} alt='delete icon' />
+									Delete
+								</button>
+								<button
+									className={
+										styles['comment__content-interactions__item'] +
+										' ' +
+										styles['interactions__edit']
+									}>
+									<img src={IconEdit} alt='edit icon' />
+									Edit
+								</button>
+							</>
+						)}
 					</div>
 				</div>
 				<div className={styles['comment__content']}>

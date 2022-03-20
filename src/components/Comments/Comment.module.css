@@ -97,3 +97,33 @@
 .interactions__delete {
 	color: var(--soft-red);
 }
+.comment__score-mobile {
+	display: flex;
+	align-items: center;
+}
+.comment__content-interactions-mobile {
+	display: none;
+}
+
+@media (max-width: 767px) {
+	.comment__header {
+		width: 100%;
+	}
+	.comment__content-interactions {
+		display: none;
+	}
+	.comment {
+		flex-direction: column-reverse;
+	}
+	.comment__score {
+		flex-direction: row;
+	}
+	.comment__score-mobile {
+		width: 100%;
+		justify-content: space-between;
+	}
+	.comment__content-interactions-mobile {
+		display: flex;
+		gap: 1.2rem;
+	}
+}
