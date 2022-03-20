@@ -7,13 +7,26 @@ import IconDelete from '../../assets/icon-delete.svg';
 import ReplyForm from '../Forms/ReplyForm';
 import EditForm from '../Forms/EditForm';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { commentsActions } from '../../store/comments.slice';
 
-const Comment = (props) => {
-	const [score, setScore] = useState(props.score);
+const Comment = ({
+	id,
+	commentId,
+	score: initialScore,
+	user,
+	createdAt,
+	replyingTo,
+	content,
+}) => {
+	const [score, setScore] = useState(initialScore);
 	const [upScore, setUpScore] = useState(false);
 	const [downScore, setDownScore] = useState(false);
 	const [isReplyVisible, setIsReplyVisible] = useState(false);
 	const [isEditVisible, setIsEditVisible] = useState(false);
+
+	const currentUser = useSelector((state) => state.user);
+	const dispatch = useDispatch();
 
 	const upScoreHandler = () => {
 		if (downScore) {
@@ -52,10 +65,10 @@ const Comment = (props) => {
 	};
 
 	const deleteComment = () => {
-		if (props.commentId) {
-			props.deleteHandler(props.id, props.commentId);
+		if (commentId) {
+			dispatch(commentsActions.deleteHandler({ id, commentId }));
 		} else {
-			props.deleteHandler(props.id);
+			dispatch(commentsActions.deleteHandler({ id }));
 		}
 	};
 
@@ -89,7 +102,7 @@ const Comment = (props) => {
 						</div>
 					</div>
 					<div className={styles['comment__content-interactions-mobile']}>
-						{props.currentUser.username !== props.user.username ? (
+						{currentUser.username !== user.username ? (
 							<button
 								className={
 									styles['comment__content-interactions__item'] +
@@ -131,23 +144,23 @@ const Comment = (props) => {
 						<div className={styles['comment__content-user']}>
 							<img
 								className={styles['comment__content-user__image']}
-								src={props.user.image.png}
+								src={user.image.png}
 								alt='user'
 							/>
 							<span className={styles['comment__content-user__name']}>
-								{props.user.username}
+								{user.username}
 							</span>
-							{props.currentUser.username === props.user.username && (
+							{currentUser.username === user.username && (
 								<span className={styles['comment__content-user__is-current']}>
 									you
 								</span>
 							)}
 							<span className={styles['comment__content-user__date']}>
-								{props.createdAt}
+								{createdAt}
 							</span>
 						</div>
 						<div className={styles['comment__content-interactions']}>
-							{props.currentUser.username !== props.user.username ? (
+							{currentUser.username !== user.username ? (
 								<button
 									className={
 										styles['comment__content-interactions__item'] +
@@ -187,23 +200,22 @@ const Comment = (props) => {
 					{!isEditVisible ? (
 						<div className={styles['comment__content-text']}>
 							<p className={styles['comment__content-text__message']}>
-								{props.replyingTo && (
+								{replyingTo && (
 									<>
 										<span className={styles['comment__content-text__reply']}>
-											@{props.replyingTo}
+											@{replyingTo}
 										</span>
 										<span> </span>
 									</>
 								)}
-								{props.content}
+								{content}
 							</p>
 						</div>
 					) : (
 						<EditForm
-							placeholder={props.content}
-							editHandler={props.editHandler}
-							id={props.id}
-							commentId={props.commentId}
+							placeholder={content}
+							id={id}
+							commentId={commentId}
 							toggleEdit={toggleEdit}
 						/>
 					)}
@@ -211,11 +223,10 @@ const Comment = (props) => {
 			</div>
 			{isReplyVisible && (
 				<ReplyForm
-					user={props.user}
-					id={props.id}
-					currentUser={props.currentUser}
-					addNewReply={props.addNewReply}
-					commentId={props.commentId}
+					user={user}
+					id={id}
+					commentId={commentId}
+					toggleReplyHandler={toggleReplyHandler}
 				/>
 			)}
 		</>

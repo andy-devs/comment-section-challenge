@@ -1,10 +1,14 @@
 import styles from './EditForm.module.css';
 import Button from '../UI/Button';
+import Textarea from '../UI/Textarea';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { commentsActions } from '../../store/comments.slice';
 import moment from 'moment';
 
-const EditForm = (props) => {
-	const [inputValue, setInputValue] = useState(props.placeholder);
+const EditForm = ({ id, commentId, toggleEdit, placeholder }) => {
+	const [inputValue, setInputValue] = useState(placeholder);
+	const dispatch = useDispatch();
 
 	const calculateDate = () => {
 		const date = moment().fromNow();
@@ -15,10 +19,15 @@ const EditForm = (props) => {
 		event.preventDefault();
 		const date = calculateDate();
 
-		console.log(props.id, props.commentId);
-
-		props.toggleEdit();
-		props.editHandler(inputValue, date, props.id, props.commentId);
+		toggleEdit();
+		dispatch(
+			commentsActions.editHandler({
+				content: inputValue,
+				createdAt: date,
+				id,
+				commentId,
+			})
+		);
 
 		setInputValue('');
 	};
@@ -33,7 +42,7 @@ const EditForm = (props) => {
 	return (
 		<div className={styles['edit-form']}>
 			<form className={styles['edit-form__form']} onSubmit={submitHandler}>
-				<textarea
+				<Textarea
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
 					className={styles['edit-form__form-input']}

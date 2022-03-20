@@ -1,14 +1,11 @@
 import Comment from './Comment';
 import styles from './CommentsList.module.css';
 import RepliesList from './RepliesList';
+import { useSelector } from 'react-redux';
 
-const CommentsList = ({
-	comments,
-	currentUser,
-	addNewReply,
-	deleteHandler,
-	editHandler,
-}) => {
+const CommentsList = () => {
+	const comments = useSelector((state) => state.comments);
+
 	return (
 		<div className={styles.comments}>
 			{comments.length === 0 ? (
@@ -24,20 +21,9 @@ const CommentsList = ({
 								score={comment.score}
 								user={comment.user}
 								content={comment.content}
-								currentUser={currentUser}
-								addNewReply={addNewReply}
-								deleteHandler={deleteHandler}
-								editHandler={editHandler}
 							/>
 							{comment.replies.length > 0 && (
-								<RepliesList
-									commentId={comment.id}
-									replies={comment.replies}
-									currentUser={currentUser}
-									addNewReply={addNewReply}
-									deleteHandler={deleteHandler}
-									editHandler={editHandler}
-								/>
+								<RepliesList commentId={comment.id} replies={comment.replies} />
 							)}
 						</>
 					);

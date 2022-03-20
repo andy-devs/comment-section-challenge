@@ -1,10 +1,15 @@
 import styles from './ReplyForm.module.css';
 import Button from '../UI/Button';
+import Textarea from '../UI/Textarea';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { commentsActions } from '../../store/comments.slice';
 import moment from 'moment';
 
-const ReplyForm = (props) => {
+const ReplyForm = ({ user, id, commentId, toggleReplyHandler }) => {
 	const [inputValue, setInputValue] = useState('');
+	const dispatch = useDispatch();
+	const currentUser = useSelector((state) => state.user);
 
 	const calculateDate = () => {
 		const date = moment().fromNow();
@@ -15,7 +20,18 @@ const ReplyForm = (props) => {
 		event.preventDefault();
 		const date = calculateDate();
 
-		props.addNewReply(inputValue, date, props.user, props.id, props.commentId);
+		toggleReplyHandler();
+
+		dispatch(
+			commentsActions.addNewReply({
+				content: inputValue,
+				date,
+				user,
+				id,
+				commentId,
+				currentUser,
+			})
+		);
 
 		setInputValue('');
 	};
@@ -28,18 +44,17 @@ const ReplyForm = (props) => {
 
 	return (
 		<div className={styles['reply-form']}>
-			{Object.keys(props.currentUser).length && (
+			{Object.keys(currentUser).length && (
 				<img
-					src={props.currentUser.image.png}
+					src={currentUser.image.png}
 					alt='current user avatar'
 					className={styles['reply-form__avatar']}
 				/>
 			)}
 			<form className={styles['reply-form__form']} onSubmit={submitHandler}>
-				<textarea
+				<Textarea
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
-					className={styles['reply-form__form-input']}
 					placeholder='Add a reply...'
 					onKeyDown={enterPressed}
 				/>

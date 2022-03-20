@@ -1,12 +1,15 @@
 import styles from './CommentForm.module.css';
 import Button from '../UI/Button';
-import { useState, useRef } from 'react';
-import { findDOMNode } from 'react-dom';
+import Textarea from '../UI/Textarea';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { commentsActions } from '../../store/comments.slice.js';
 import moment from 'moment';
 
-const CommentForm = (props) => {
+const CommentForm = () => {
 	const [inputValue, setInputValue] = useState('');
-	const formRef = useRef();
+	const dispatch = useDispatch();
+	const currentUser = useSelector((state) => state.user);
 
 	const calculateDate = () => {
 		const date = moment().fromNow();
@@ -17,7 +20,13 @@ const CommentForm = (props) => {
 		event.preventDefault();
 		const date = calculateDate();
 
-		props.addNewComment(inputValue, date);
+		dispatch(
+			commentsActions.addNewComment({
+				content: inputValue,
+				createdAt: date,
+				currentUser,
+			})
+		);
 
 		setInputValue('');
 	};
@@ -31,21 +40,17 @@ const CommentForm = (props) => {
 
 	return (
 		<div className={styles['comment-form']}>
-			{Object.keys(props.currentUser).length && (
+			{Object.keys(currentUser).length && (
 				<img
-					src={props.currentUser.image.png}
+					src={currentUser.image.png}
 					alt='current user avatar'
 					className={styles['comment-form__avatar']}
 				/>
 			)}
-			<form
-				className={styles['comment-form__form']}
-				onSubmit={submitHandler}
-				ref={formRef}>
-				<textarea
+			<form className={styles['comment-form__form']} onSubmit={submitHandler}>
+				<Textarea
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
-					className={styles['comment-form__form-input']}
 					placeholder='Add a comment...'
 					onKeyDown={enterPressed}
 				/>

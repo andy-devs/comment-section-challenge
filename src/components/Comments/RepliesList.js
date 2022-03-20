@@ -1,14 +1,7 @@
 import Comment from './Comment';
 import styles from './RepliesList.module.css';
 
-const RepliesList = ({
-	replies,
-	currentUser,
-	addNewReply,
-	commentId,
-	deleteHandler,
-	editHandler,
-}) => {
+const RepliesList = ({ replies, currentUser, commentId }) => {
 	return (
 		<div className={styles.replies}>
 			{replies.map((reply) => (
@@ -21,9 +14,6 @@ const RepliesList = ({
 					content={reply.content}
 					replyingTo={reply.replyingTo}
 					currentUser={currentUser}
-					addNewReply={addNewReply}
-					deleteHandler={deleteHandler}
-					editHandler={editHandler}
 					commentId={commentId}
 				/>
 			))}

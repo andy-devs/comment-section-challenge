@@ -1,0 +1,24 @@
+.textarea {
+	border: 2px solid var(--very-light-gray);
+	color: var(--dark-blue);
+	font-family: 'Rubik', sans-serif;
+	padding: 0.5rem 1rem;
+	height: 4rem;
+	border-radius: 0.4rem;
+	width: 100%;
+	resize: none;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+.textarea:focus {
+	outline: 1px solid var(--moderate-blue);
+}
+.textarea::placeholder {
+	color: var(--grayish-blue);
+}
+@media (max-width: 767px) {
+	.textarea {
+		align-self: stretch;
+		width: unset;
+	}
+}
