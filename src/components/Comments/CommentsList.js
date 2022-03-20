@@ -2,7 +2,12 @@ import Comment from './Comment';
 import styles from './CommentsList.module.css';
 import RepliesList from './RepliesList';
 
-const CommentsList = ({ comments, currentUser, addNewReply }) => {
+const CommentsList = ({
+	comments,
+	currentUser,
+	addNewReply,
+	deleteHandler,
+}) => {
 	return (
 		<div className={styles.comments}>
 			{comments.length === 0 ? (
@@ -20,6 +25,7 @@ const CommentsList = ({ comments, currentUser, addNewReply }) => {
 								content={comment.content}
 								currentUser={currentUser}
 								addNewReply={addNewReply}
+								deleteHandler={deleteHandler}
 							/>
 							{comment.replies.length > 0 && (
 								<RepliesList
@@ -27,6 +33,7 @@ const CommentsList = ({ comments, currentUser, addNewReply }) => {
 									replies={comment.replies}
 									currentUser={currentUser}
 									addNewReply={addNewReply}
+									deleteHandler={deleteHandler}
 								/>
 							)}
 						</>

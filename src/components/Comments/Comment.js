@@ -45,6 +45,14 @@ const Comment = (props) => {
 		setisReplyVisible((prev) => !prev);
 	};
 
+	const deleteComment = () => {
+		if (props.commentId) {
+			props.deleteHandler(props.id, props.commentId);
+		} else {
+			props.deleteHandler(props.id);
+		}
+	};
+
 	return (
 		<>
 			<div className={styles.comment}>
@@ -112,7 +120,8 @@ const Comment = (props) => {
 											styles['comment__content-interactions__item'] +
 											' ' +
 											styles['interactions__delete']
-										}>
+										}
+										onClick={deleteComment}>
 										<img src={IconDelete} alt='delete icon' />
 										Delete
 									</button>

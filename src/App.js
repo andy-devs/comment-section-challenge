@@ -24,7 +24,9 @@ function App() {
 	}, []);
 
 	const addNewComment = (text, date) => {
+		const id = Math.floor(Math.random() * 100000);
 		const newComment = {
+			id: id,
 			user: { image: currentUser.image, username: currentUser.username },
 			content: text,
 			score: 0,
@@ -37,7 +39,9 @@ function App() {
 	};
 
 	const addNewReply = (text, date, user, id, commentId) => {
+		const newId = Math.floor(Math.random() * 100000);
 		const newReply = {
+			id: newId,
 			user: { image: currentUser.image, username: currentUser.username },
 			content: text,
 			score: 0,
@@ -52,19 +56,36 @@ function App() {
 			commentsCopy[commentWithReplyId].replies.push(newReply);
 			setComments(commentsCopy);
 		} else if (commentId) {
-			const commentWithReplyId = comments.findIndex(
+			const commentWithReplyIndex = comments.findIndex(
 				(comment) => comment.id === commentId
 			);
 			const commentsCopy = [...comments];
-			const commentAllReplies = commentsCopy[commentWithReplyId].replies;
+			const commentAllReplies = commentsCopy[commentWithReplyIndex].replies;
 			const replyingToIndex = commentAllReplies.findIndex(
 				(reply) => reply.id === id
 			);
-			commentsCopy[commentWithReplyId].replies.splice(
+			commentsCopy[commentWithReplyIndex].replies.splice(
 				replyingToIndex + 1,
 				0,
 				newReply
 			);
+			setComments(commentsCopy);
+		}
+	};
+
+	const deleteHandler = (id, commentId) => {
+		if (!commentId) {
+			const newComments = comments.filter((comment) => comment.id !== id);
+			setComments(newComments);
+		} else if (commentId) {
+			const commentsCopy = [...comments];
+			const commentWithReplyIndex = commentsCopy.findIndex(
+				(comment) => comment.id === commentId
+			);
+
+			commentsCopy[commentWithReplyIndex].replies = commentsCopy[
+				commentWithReplyIndex
+			].replies.filter((reply) => reply.id !== id);
 			setComments(commentsCopy);
 		}
 	};
@@ -75,6 +96,7 @@ function App() {
 				comments={comments}
 				currentUser={currentUser}
 				addNewReply={addNewReply}
+				deleteHandler={deleteHandler}
 			/>
 			<CommentForm currentUser={currentUser} addNewComment={addNewComment} />
 		</div>
