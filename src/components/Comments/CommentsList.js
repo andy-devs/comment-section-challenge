@@ -9,7 +9,7 @@ const CommentsList = () => {
 
 	return (
 		<div className={styles.comments}>
-			{totalLength === 0 ? (
+			{comments.length === 0 ? (
 				<p>No comments</p>
 			) : (
 				comments.map((comment) => {
