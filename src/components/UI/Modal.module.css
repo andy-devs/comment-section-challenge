@@ -7,7 +7,7 @@
 	justify-content: center;
 	z-index: 2;
 	background-color: hsla(0, 0%, 26%, 0.3);
-	padding: 1rem 0.5rem;
+	padding: 0rem 0.2rem;
 }
 .modal {
 	z-index: 99;
@@ -37,4 +37,12 @@
 	padding: 0.9rem 1.3rem;
 	font-weight: 700;
 	background-color: var(--grayish-blue);
+}
+@media (max-width: 400px) {
+	.modal {
+		max-width: 18rem;
+	}
+	.modal__buttons {
+		font-size: 0.9rem;
+	}
 }
