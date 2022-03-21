@@ -89,7 +89,7 @@ const commentsSlice = createSlice({
 
 		editHandler(state, action) {
 			if (!action.payload.commentId) {
-				const updatedCommentIndex = state.findIndex(
+				const updatedCommentIndex = state.items.findIndex(
 					(comment) => comment.id === action.payload.id
 				);
 				state.items[updatedCommentIndex].content = action.payload.content;
