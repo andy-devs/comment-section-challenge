@@ -1,16 +1,31 @@
 import Comment from './Comment';
+import { Oval } from 'react-loader-spinner';
 import styles from './CommentsList.module.css';
 import RepliesList from './RepliesList';
 import { useSelector } from 'react-redux';
 
 const CommentsList = () => {
 	const comments = useSelector((state) => state.comments.items);
-	const totalLength = useSelector((state) => state.comments.totalLength);
+	const loader = useSelector((state) => state.ui.loader);
 
 	return (
 		<div className={styles.comments}>
-			{comments.length === 0 ? (
-				<p>No comments</p>
+			{loader ? (
+				<div
+					style={{
+						display: 'flex',
+						'align-items': 'center',
+						'justify-content': 'center',
+					}}>
+					<Oval
+						ariaLabel='loading-indicator'
+						height={100}
+						width={100}
+						strokeWidth={4}
+						color='hsl(238, 40%, 52%)'
+						secondaryColor='hsl(239, 57%, 85%)'
+					/>
+				</div>
 			) : (
 				comments.map((comment) => {
 					return (

@@ -10,7 +10,6 @@ const commentsSlice = createSlice({
 		replaceComments(state, action) {
 			const comments = action.payload;
 			for (let comment of comments.items) {
-				console.log(comment);
 				if (!comment.hasOwnProperty('replies')) {
 					comment.replies = [];
 				}

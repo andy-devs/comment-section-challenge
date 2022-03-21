@@ -8,3 +8,6 @@
 .comments div:last-child {
 	margin-bottom: 0;
 }
+.comments-loader {
+	align-self: center;
+}
