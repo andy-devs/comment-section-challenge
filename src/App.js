@@ -1,24 +1,27 @@
 import { useEffect } from 'react';
 import CommentsList from './components/Comments/CommentsList';
 import CommentForm from './components/Forms/CommentForm';
+import { useSelector, useDispatch } from 'react-redux';
+import { sendCommentsData, fetchCommentsData } from './store/comments.actions';
+
+let isInitial = true;
 
 function App() {
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		try {
-	// 			const response = await fetch('data.json');
-	// 			const data = await response.json();
-	// 			const fetchedComments = await data.comments;
-	// 			const fetchedCurrentUser = await data.currentUser;
-	// 			setComments(fetchedComments);
-	// 			setCurrentUser(fetchedCurrentUser);
-	// 		} catch (err) {
-	// 			console.log(err);
-	// 		}
-	// 	};
+	const comments = useSelector((state) => state.comments);
+	const dispatch = useDispatch();
 
-	// 	fetchData();
-	// }, []);
+	useEffect(() => {
+		dispatch(fetchCommentsData());
+	}, [dispatch]);
+
+	useEffect(() => {
+		if (isInitial) {
+			isInitial = false;
+			return;
+		}
+
+		dispatch(sendCommentsData(comments));
+	}, [comments, dispatch]);
 
 	return (
 		<div className='main'>

@@ -4,11 +4,12 @@ import RepliesList from './RepliesList';
 import { useSelector } from 'react-redux';
 
 const CommentsList = () => {
-	const comments = useSelector((state) => state.comments);
+	const comments = useSelector((state) => state.comments.items);
+	const totalLength = useSelector((state) => state.comments.totalLength);
 
 	return (
 		<div className={styles.comments}>
-			{comments.length === 0 ? (
+			{totalLength === 0 ? (
 				<p>No comments</p>
 			) : (
 				comments.map((comment) => {
