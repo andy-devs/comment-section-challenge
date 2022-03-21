@@ -6,6 +6,7 @@ import IconEdit from '../../assets/icon-edit.svg';
 import IconDelete from '../../assets/icon-delete.svg';
 import ReplyForm from '../Forms/ReplyForm';
 import EditForm from '../Forms/EditForm';
+import Modal from '../UI/Modal';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { commentsActions } from '../../store/comments.slice';
@@ -24,6 +25,7 @@ const Comment = ({
 	const [downScore, setDownScore] = useState(false);
 	const [isReplyVisible, setIsReplyVisible] = useState(false);
 	const [isEditVisible, setIsEditVisible] = useState(false);
+	const [modalState, setModalState] = useState(false);
 
 	const currentUser = useSelector((state) => state.user);
 	const dispatch = useDispatch();
@@ -64,6 +66,14 @@ const Comment = ({
 		setIsEditVisible((prev) => !prev);
 	};
 
+	const showModal = () => {
+		setModalState(true);
+	};
+
+	const hideModal = () => {
+		setModalState(false);
+	};
+
 	const deleteComment = () => {
 		if (commentId) {
 			dispatch(commentsActions.deleteHandler({ id, commentId }));
@@ -74,6 +84,16 @@ const Comment = ({
 
 	return (
 		<>
+			{modalState && (
+				<Modal
+					header='Delete comment'
+					content="Are you sure you want to delete this comment? This will remove the comment and can't be undone."
+					buttonText='YES, DELETE'
+					buttonColor='hsl(358, 79%, 66%)'
+					modalFunction={deleteComment}
+					hideModal={hideModal}
+				/>
+			)}
 			<div className={styles.comment}>
 				<div className={styles['comment__score-mobile']}>
 					<div className={styles['comment__score']}>
@@ -121,7 +141,7 @@ const Comment = ({
 										' ' +
 										styles['interactions__delete']
 									}
-									onClick={deleteComment}>
+									onClick={showModal}>
 									<img src={IconDelete} alt='delete icon' />
 									Delete
 								</button>
@@ -179,7 +199,7 @@ const Comment = ({
 											' ' +
 											styles['interactions__delete']
 										}
-										onClick={deleteComment}>
+										onClick={showModal}>
 										<img src={IconDelete} alt='delete icon' />
 										Delete
 									</button>

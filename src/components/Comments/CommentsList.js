@@ -14,8 +14,8 @@ const CommentsList = () => {
 				<div
 					style={{
 						display: 'flex',
-						'align-items': 'center',
-						'justify-content': 'center',
+						alignItems: 'center',
+						justifyContent: 'center',
 					}}>
 					<Oval
 						ariaLabel='loading-indicator'
