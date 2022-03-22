@@ -24,10 +24,10 @@ function App() {
 	}, [comments, dispatch]);
 
 	return (
-		<div className='main'>
+		<main className='main'>
 			<CommentsList />
 			<CommentForm />
-		</div>
+		</main>
 	);
 }
 
