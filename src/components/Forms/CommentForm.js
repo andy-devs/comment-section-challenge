@@ -20,9 +20,13 @@ const CommentForm = () => {
 		event.preventDefault();
 		const date = calculateDate();
 
+		if (inputValue.trim().length === 0) {
+			return;
+		}
+
 		dispatch(
 			commentsActions.addNewComment({
-				content: inputValue,
+				content: inputValue.trim(),
 				createdAt: date,
 				currentUser,
 			})
