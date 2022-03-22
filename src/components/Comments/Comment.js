@@ -8,7 +8,7 @@ import ReplyForm from '../Forms/ReplyForm';
 import EditForm from '../Forms/EditForm';
 import Modal from '../UI/Modal';
 import moment from 'moment';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { commentsActions } from '../../store/comments.slice';
 
