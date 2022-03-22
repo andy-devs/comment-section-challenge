@@ -12,7 +12,7 @@ const ReplyForm = ({ user, id, commentId, toggleReplyHandler }) => {
 	const currentUser = useSelector((state) => state.user);
 
 	const calculateDate = () => {
-		const timestamp = moment().format('YYYY-MM-DTh:mm:ss');
+		const timestamp = moment().format('YYYY-MM-DThh:mm:ss a');
 		return timestamp;
 	};
 
@@ -29,7 +29,7 @@ const ReplyForm = ({ user, id, commentId, toggleReplyHandler }) => {
 		dispatch(
 			commentsActions.addNewReply({
 				content: inputValue.trim(),
-				date,
+				createdAt: date,
 				user,
 				id,
 				commentId,

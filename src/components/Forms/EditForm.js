@@ -11,7 +11,7 @@ const EditForm = ({ id, commentId, toggleEdit, placeholder }) => {
 	const dispatch = useDispatch();
 
 	const calculateDate = () => {
-		const timestamp = moment().format('YYYY-MM-DTh:mm:ss');
+		const timestamp = moment().format('YYYY-MM-DTh:mm:ss a');
 		return timestamp;
 	};
 

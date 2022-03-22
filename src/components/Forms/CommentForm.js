@@ -12,7 +12,7 @@ const CommentForm = () => {
 	const currentUser = useSelector((state) => state.user);
 
 	const calculateDate = () => {
-		const timestamp = moment().format('YYYY-MM-DTh:mm:ss');
+		const timestamp = moment().format('YYYY-MM-DTh:mm:ss a');
 		return timestamp;
 	};
 

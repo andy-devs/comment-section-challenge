@@ -177,7 +177,7 @@ const Comment = ({
 								</span>
 							)}
 							<span className={styles['comment__content-user__date']}>
-								{moment(createdAt, 'YYYY-MM-DTh:mm:ss').fromNow()}
+								{moment(createdAt, 'YYYY-MM-DTh:mm:ss a').fromNow()}
 							</span>
 						</div>
 						<div className={styles['comment__content-interactions']}>
