@@ -22,9 +22,13 @@ const ReplyForm = ({ user, id, commentId, toggleReplyHandler }) => {
 
 		toggleReplyHandler();
 
+		if (inputValue.trim().length === 0) {
+			return;
+		}
+
 		dispatch(
 			commentsActions.addNewReply({
-				content: inputValue,
+				content: inputValue.trim(),
 				date,
 				user,
 				id,

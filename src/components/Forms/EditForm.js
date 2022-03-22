@@ -19,10 +19,14 @@ const EditForm = ({ id, commentId, toggleEdit, placeholder }) => {
 		event.preventDefault();
 		const date = calculateDate();
 
+		if (inputValue.trim().length === 0) {
+			return;
+		}
+
 		toggleEdit();
 		dispatch(
 			commentsActions.editHandler({
-				content: inputValue,
+				content: inputValue.trim(),
 				createdAt: date,
 				id,
 				commentId,
