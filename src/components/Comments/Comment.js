@@ -7,7 +7,8 @@ import IconDelete from '../../assets/icon-delete.svg';
 import ReplyForm from '../Forms/ReplyForm';
 import EditForm from '../Forms/EditForm';
 import Modal from '../UI/Modal';
-import { useState } from 'react';
+import moment from 'moment';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { commentsActions } from '../../store/comments.slice';
 
@@ -176,7 +177,7 @@ const Comment = ({
 								</span>
 							)}
 							<span className={styles['comment__content-user__date']}>
-								{createdAt}
+								{moment(createdAt, 'YYYY-MM-DTh:mm:ss').fromNow()}
 							</span>
 						</div>
 						<div className={styles['comment__content-interactions']}>

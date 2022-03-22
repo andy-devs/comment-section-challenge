@@ -12,8 +12,8 @@ const ReplyForm = ({ user, id, commentId, toggleReplyHandler }) => {
 	const currentUser = useSelector((state) => state.user);
 
 	const calculateDate = () => {
-		const date = moment().fromNow();
-		return date;
+		const timestamp = moment().format('YYYY-MM-DTh:mm:ss');
+		return timestamp;
 	};
 
 	const submitHandler = (event) => {

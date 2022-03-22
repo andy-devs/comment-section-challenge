@@ -11,8 +11,8 @@ const EditForm = ({ id, commentId, toggleEdit, placeholder }) => {
 	const dispatch = useDispatch();
 
 	const calculateDate = () => {
-		const date = moment().fromNow();
-		return date;
+		const timestamp = moment().format('YYYY-MM-DTh:mm:ss');
+		return timestamp;
 	};
 
 	const submitHandler = (event) => {
