@@ -61,7 +61,7 @@
 	color: var(--grayish-blue);
 }
 .comment__content-text__message {
-	line-break: anywhere;
+	line-break: normal;
 	line-height: 1.5;
 	color: var(--grayish-blue);
 }
